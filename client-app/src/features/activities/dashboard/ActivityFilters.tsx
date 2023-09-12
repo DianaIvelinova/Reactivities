@@ -27,7 +27,7 @@ export default observer(function ActivityFilters() {
             </Menu>
             <Header />
             <Calendar
-                onChange={(date: any) => setPredicate('startDate', date as Date)}
+                onChange={(date) => setPredicate('startDate', date as Date)}
             />
         </>
     )

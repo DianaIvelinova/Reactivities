@@ -10,7 +10,7 @@ interface Props {
 }
 
 export default observer(function PhotoUploadWidget({loading, uploadPhoto}: Props) {
-    const [files, setFiles] = useState<any>([]);
+    const [files, setFiles] = useState<object & {preview?: string}[]>([]);
     const [cropper, setCropper] = useState<Cropper>();
 
     function onCrop() {
@@ -21,7 +21,7 @@ export default observer(function PhotoUploadWidget({loading, uploadPhoto}: Props
 
     useEffect(() => {
         return () => {
-            files.forEach((file: any) => URL.revokeObjectURL(file.preview))
+            files.forEach((file: object & {preview?: string}) => URL.revokeObjectURL(file.preview!))
         }
     }, [files]);
 
@@ -37,7 +37,7 @@ export default observer(function PhotoUploadWidget({loading, uploadPhoto}: Props
                 <Grid.Column width={4}>
                 <Header sub color='teal' content='Step 2 - Resize image' />
                     {files && files.length > 0 &&
-                        <PhotoWidgetCropper setCropper={setCropper} imagePreview={files[0].preview} />
+                        <PhotoWidgetCropper setCropper={setCropper} imagePreview={files[0].preview!} />
                     }
                 </Grid.Column>
                 <Grid.Column width={1} />

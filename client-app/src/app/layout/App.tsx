@@ -1,8 +1,8 @@
-import React, { useEffect } from "react";
+import { useEffect } from "react";
 import { Container } from "semantic-ui-react";
 import NavBar from "./NavBar";
 import { observer } from "mobx-react-lite";
-import { Outlet, useLocation } from "react-router-dom";
+import { Outlet, ScrollRestoration, useLocation } from "react-router-dom";
 import HomePage from "../../features/home/HomePage";
 import { ToastContainer } from "react-toastify";
 import { useStore } from "../stores/store";
@@ -25,6 +25,7 @@ function App() {
 
   return (
     <>
+    <ScrollRestoration />
     <ModalContainer />
     <ToastContainer position="bottom-right" hideProgressBar theme="colored" />
       {location.pathname === "/" ? (
